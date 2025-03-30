@@ -25,17 +25,6 @@ const Login = () => {
     }
   };
 
-  // return (
-  //   <div className="flex h-screen justify-center items-center">
-  //     <form onSubmit={handleLogin} className="bg-white p-8 shadow-lg rounded">
-  //       <h2 className="text-2xl font-bold mb-4">Login</h2>
-  //       <input className="border p-2 w-full mb-3" type="email" placeholder="E-mail" onChange={(e) => setEmail(e.target.value)} />
-  //       <input className="border p-2 w-full mb-3" type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} />
-  //       <button className="bg-blue-500 text-white p-2 w-full">Entrar</button>
-  //     </form>
-  //   </div>
-  // );
-
 
   return (
     <div className="container-scroller">
@@ -61,9 +50,14 @@ const Login = () => {
         </div>
       </div>
     </div>
+
   );
 
 
 };
 
 export default Login;
+
+
+
+

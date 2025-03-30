@@ -21,37 +21,25 @@ const Dashboard = () => {
           <nav className="mt-2">
             <ul className="nav nav-pills nav-sidebar flex-column">
               <li className="nav-item">
-                <Link 
-                  to="/pacientes" 
-                  className={`nav-link ${location.pathname === '/pacientes' ? 'active' : ''}`}
-                >
+                <Link to="/pacientes" className={`nav-link ${location.pathname === '/pacientes' ? 'active' : ''}`}>
                   <i className="nav-icon fas fa-user"></i>
                   <p>Pacientes</p>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link 
-                  to="/orcamentos" 
-                  className={`nav-link ${location.pathname === '/orcamentos' ? 'active' : ''}`}
-                >
+                <Link to="/orcamentos" className={`nav-link ${location.pathname === '/orcamentos' ? 'active' : ''}`}>
                   <i className="nav-icon fas fa-file-invoice-dollar"></i>
                   <p>Orçamentos</p>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link 
-                  to="/historico-procedimentos" 
-                  className={`nav-link ${location.pathname === '/historico-procedimentos' ? 'active' : ''}`}
-                >
+                <Link to="/historico-procedimentos" className={`nav-link ${location.pathname === '/historico-procedimentos' ? 'active' : ''}`}>
                   <i className="nav-icon fas fa-history"></i>
                   <p>Histórico Procedimentos</p>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link 
-                  to="/financeiro" 
-                  className={`nav-link ${location.pathname === '/financeiro' ? 'active' : ''}`}
-                >
+                <Link to="/financeiro" className={`nav-link ${location.pathname === '/financeiro' ? 'active' : ''}`}>
                   <i className="nav-icon fas fa-dollar-sign"></i>
                   <p>Financeiro</p>
                 </Link>

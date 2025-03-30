@@ -1,22 +1,35 @@
-import { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from 'react';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("accessToken"));
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [token, setToken] = useState(null);
 
-  const login = (newToken) => {
-    setToken(newToken);
-    localStorage.setItem("accessToken", newToken);
+    useEffect(() => {
+      const storedToken = localStorage.getItem('accessToken');
+      if (storedToken) {
+        setToken(storedToken);
+        setIsAuthenticated(true);
+      }
+    }, []);
+
+
+  const login = (jwtToken) => {
+    setToken(jwtToken);
+    setIsAuthenticated(true);
+    localStorage.setItem('accessToken', jwtToken);
   };
 
   const logout = () => {
     setToken(null);
-    localStorage.removeItem("accessToken");
+    setIsAuthenticated(false);
+    localStorage.removeItem('accessToken');
   };
 
-  return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+
+return (
+    <AuthContext.Provider value={{ isAuthenticated, token, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
