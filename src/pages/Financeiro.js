@@ -3,14 +3,12 @@ import React from 'react';
 //import './Dashboard.css';
 import ContentHeader from '../components/ContentHeader';
 
+const Financeiro = () => {
 
-const Dashboard = () => {
-
-  return (
-
-      <ContentHeader title="Dashboard" />
-  );
+    return (
+        <ContentHeader title="Financeiro" />
+    );
 
 };
 
-export default Dashboard;
+export default Financeiro;

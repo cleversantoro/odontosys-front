@@ -3,14 +3,12 @@ import React from 'react';
 //import './Dashboard.css';
 import ContentHeader from '../components/ContentHeader';
 
+const Orcamento = () => {
 
-const Dashboard = () => {
-
-  return (
-
-      <ContentHeader title="Dashboard" />
-  );
+    return (
+        <ContentHeader title="Orcamento" />
+    );
 
 };
 
-export default Dashboard;
+export default Orcamento;

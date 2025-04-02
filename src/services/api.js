@@ -16,7 +16,17 @@ api.interceptors.request.use(
       return Promise.reject(error);
     }
   );
-  
+
+// src/services/api.js
+api.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response?.status === 401) {
+      // Redirecionar para login
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;
 

@@ -1,28 +1,37 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
-import Patients from './pages/Patients';
+import Home from './pages/Home';
 import Login from './pages/Login';
-import PrivateRoute from './components/PrivateRoute';
-//import Orcamentos from './components/Orcamentos';
-//import HistoricoProcedimentos from './components/HistoricoProcedimentos';
-//import Financeiro from './components/Financeiro';
-
+import PrivateRoute from './routes/PrivateRoute';
+import Appointment from './pages/Appointment';
+//import Layout from './components/Layout';
+import Orcamento from './pages/Orcamento';
+import Financeiro from './pages/Financeiro';
+import { AuthProvider } from './context/AuthContext';
+// src/App.js
+const Patients = React.lazy(() => import('./pages/Patients'));
 
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route element={<PrivateRoute />}>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/pacientes" element={<Patients />} />
-        {/* Outras rotas protegidas */}
-      </Route>
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route element={<PrivateRoute />}>
+          <Route element={<Home />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/pacientes" element={<Patients />} />
+            <Route path="/consultas" element={<Appointment />} />
+            <Route path="/orcamento" element={<Orcamento />} />
+            <Route path="/financeiro" element={<Financeiro />} />
+          </Route>
+        </Route>
+      </Routes>
+    </AuthProvider>
   );
 }
-
 
 export default App;
 

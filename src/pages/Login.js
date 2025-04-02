@@ -19,7 +19,7 @@ const Login = () => {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
       login(accessToken);
-      navigate("/dashboard");
+      navigate("/home");
     } catch (error) {
       setError(error.response?.data?.error || "Erro ao fazer login!");
     }
