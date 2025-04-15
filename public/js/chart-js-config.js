@@ -1,9 +1,6 @@
-/*!
- * spur-template - An admin template based on Bootstrap 4
- * Version v1.1.0
- * Copyright 2016 - 2019 Alexander Rechsteiner
- * https://hackerthemes.com
- */
+
+// Ensure Chart.js is imported
+import Chart from 'chart.js';
 
 Chart.defaults.global.defaultFontFamily = "'Open Sans', 'sans-serif'";
 

@@ -1,9 +1,8 @@
-/*!
- * spur-template - An admin template based on Bootstrap 4
- * Version v1.1.0
- * Copyright 2016 - 2019 Alexander Rechsteiner
- * https://hackerthemes.com
- */
+
+// Ensure jQuery is loaded
+if (typeof jQuery === "undefined") {
+    throw new Error("jQuery is not loaded. Please include jQuery before this script.");
+}
 
 const mobileBreakpoint = window.matchMedia("(max-width: 991px )");
 

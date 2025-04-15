@@ -1,17 +1,16 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
+import { AuthProvider } from './context/AuthContext';
+
 import Home from './pages/Home';
 import Login from './pages/Login';
-import PrivateRoute from './routes/PrivateRoute';
-import Appointment from './pages/Appointment';
-//import Layout from './components/Layout';
 import Orcamento from './pages/Orcamento';
+import Dashboard from './pages/Dashboard';
 import Financeiro from './pages/Financeiro';
-import { AuthProvider } from './context/AuthContext';
-// src/App.js
-const Patients = React.lazy(() => import('./pages/Patients'));
+import Appointment from './pages/Appointment';
+import PrivateRoute from './routes/PrivateRoute';
 
+const Patients = React.lazy(() => import('./pages/Patients'));
 
 function App() {
   return (

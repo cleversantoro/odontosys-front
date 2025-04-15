@@ -3,17 +3,24 @@ import api from "../services/api";
 import ContentHeader from "../components/ContentHeader";
 //import Navbar from "../components/Navbar";
 import Table from "../components/Table";
-import Modal from "../components/Modal";
+
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
 
 const Patients = () => {
   const [patients, setPatients] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
   useEffect(() => {
     api.get('/patients')
-       .then((res) => {setPatients(res.data);})
-       .catch((error) => {console.error('Erro ao buscar pacientes:', error);});
+      .then((res) => { setPatients(res.data); })
+      .catch((error) => { console.error('Erro ao buscar pacientes:', error); });
   }, []);
 
   const columns = [
@@ -25,20 +32,34 @@ const Patients = () => {
   return (
     <>
       <ContentHeader title="Pacientes" />
+
+
       <div className="p-6">
-        {/* <Navbar /> */}
-        <button onClick={() => setIsOpen(true)} 
-        className="bg-green-500 text-white px-3 py-2 rounded mb-4">Adicionar Paciente</button>
+        <Button variant="primary" onClick={handleShow} >
+          Adicionar Paciente
+        </Button>
         <Table data={patients} columns={columns} />
       </div>
 
-      <Modal isOpen={isOpen} closeModal={() => setIsOpen(false)}>
-        <h2 className="text-xl font-bold mb-4">Novo Paciente</h2>
-        <input className="border p-2 w-full mb-3" type="text" placeholder="Nome" />
-        <input className="border p-2 w-full mb-3" type="email" placeholder="E-mail" />
-        <input className="border p-2 w-full mb-3" type="text" placeholder="Telefone" />
-        <button className="bg-blue-500 px-3 py-2 text-white rounded">Salvar</button>
+
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Novo Paciente</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <input className="border p-2 w-full mb-3" type="text" placeholder="Nome" /><br />
+          <input className="border p-2 w-full mb-3" type="email" placeholder="E-mail" /><br />
+          <input className="border p-2 w-full mb-3" type="text" placeholder="Telefone" />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>Close</Button>
+          <Button variant="primary" onClick={handleClose}>Save Changes</Button>
+        </Modal.Footer>
       </Modal>
+
+
+
     </>
   );
 };

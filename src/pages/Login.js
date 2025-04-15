@@ -18,7 +18,7 @@ const Login = () => {
       const { accessToken, refreshToken } = response.data;
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
-      login(accessToken);
+      login(accessToken, refreshToken);
       navigate("/home");
     } catch (error) {
       setError(error.response?.data?.error || "Erro ao fazer login!");
@@ -27,29 +27,35 @@ const Login = () => {
 
 
   return (
-    <div className="container-scroller">
-      <div className="container-fluid page-body-wrapper full-page-wrapper">
-        <div className="content-wrapper d-flex align-items-center auth">
-          <div className="row flex-grow">
-            <div className="col-lg-12 mx-auto">
-              <div className="auth-form-light text-left p-5">
-                <h4>Bem-vindo!</h4>
-                {error && <div className="alert alert-danger">{error}</div>}
-                <form onSubmit={handleLogin}>
-                  <div className="form-group">
-                    <input type="text" className="form-control" placeholder="Usuário" value={email} onChange={(e) => setEmail(e.target.value)} required />
-                  </div>
-                  <div className="form-group">
-                    <input type="password" className="form-control" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-                  </div>
-                  <button type="submit" className="btn btn-primary btn-block">Entrar</button>
-                </form>
+  
+    <div className="form-screen">
+      <a href="/" className="spur-logo"><i className="fas fa-bolt"></i> <span>OdontoSys</span></a>
+      <div className="card account-dialog">
+        <div className="card-header bg-primary text-white"> Logar  </div>
+        <div className="card-body">
+          {error && <div className="alert alert-danger">{error}</div>}
+          <form onSubmit={handleLogin}>
+            <div className="form-group">
+              <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Usuário" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            </div>
+            <div className="form-group">
+              <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            </div>
+            <div className="form-group">
+              <div className="custom-control custom-checkbox">
+                <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                  <label className="custom-control-label" for="customCheck1">Lembrar-me</label>
               </div>
             </div>
-          </div>
+            <div className="account-dialog-actions">
+              <button type="submit" className="btn btn-primary">Entrar</button>
+              <a className="account-dialog-link" href="/">Criar conta</a>
+            </div>
+          </form>
         </div>
       </div>
     </div>
+
 
   );
 

@@ -72,9 +72,6 @@ const Home = () => {
           </form>
 
           <div className="tools">
-            <a href="https://github.com/seu-usuario/odontosys" target="_blank" rel="noopener noreferrer" className="tools-item">
-              <i className="fab fa-github"></i>
-            </a>
             <button className="tools-item">
               <i className="fas fa-bell"></i>
               {notifications > 0 && <span className="tools-item-count">{notifications}</span>}
@@ -92,7 +89,7 @@ const Home = () => {
         </header>
 
         {/* Main content */}
-        <div className="dash-app">
+        <div >
         <main className="dash-content">
           <div className="container-fluid">
             <Outlet />

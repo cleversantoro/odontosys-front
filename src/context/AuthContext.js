@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
         setRefreshToken(storedRefresh);
         setIsAuthenticated(true);
       }
-    }, []);
+    }, [setRefreshToken, setToken, setIsAuthenticated]);
     
 
   // const login = (jwtToken) => {
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
 
 
 return (
-    <AuthContext.Provider value={{ isAuthenticated, token, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, token, refreshToken, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
