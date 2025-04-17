@@ -4,13 +4,13 @@ import { AuthProvider } from './context/AuthContext';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Orcamento from './pages/Orcamento';
+import Orcamento from './pages/Orcamento/Orcamento';
 import Dashboard from './pages/Dashboard';
-import Financeiro from './pages/Financeiro';
-import Appointment from './pages/Appointment';
+import Financeiro from './pages/Financeiro/Financeiro';
+import Appointment from './pages/Consultas/Appointment';
 import PrivateRoute from './routes/PrivateRoute';
 
-const Patients = React.lazy(() => import('./pages/Patients'));
+const Patients = React.lazy(() => import('./pages/Pacientes/Patients'));
 
 function App() {
   return (

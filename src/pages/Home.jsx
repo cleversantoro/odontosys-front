@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+
 //import ContentHeader from '../components/ContentHeader';
 
 const Home = () => {
@@ -49,10 +54,21 @@ const Home = () => {
             <i className="fas fa-user"></i> Pacientes
           </Link>
 
-          <Link to="/consultas" className="dash-nav-item">
+          {/* <Link to="/consultas" className="dash-nav-item">
             <i className="fas fa-calendar-alt"></i> Consultas
-          </Link>
+          </Link> */}
+
+          <Navbar className="dash-nav-list">
+            <Container>
+                <Link to="/consultas" className="dash-nav-item">
+                  <i className="fas fa-calendar-alt"></i> Consultas
+                </Link>
+            </Container>
+          </Navbar>
+
         </nav>
+
+
       </div>
 
       <div className="dash-app">
@@ -90,12 +106,12 @@ const Home = () => {
 
         {/* Main content */}
         <div >
-        <main className="dash-content">
-          <div className="container-fluid">
-            <Outlet />
-          </div>
-        </main>
-      </div>
+          <main className="dash-content">
+            <div className="container-fluid">
+              <Outlet />
+            </div>
+          </main>
+        </div>
       </div>
     </div>
   );

@@ -1,22 +1,21 @@
 // src/pages/Consulta.js
 import React, { useState, useEffect } from 'react';
-import api from '../services/api';
+import api from '../../services/api';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import ContentHeader from '../components/ContentHeader';
+import Table from 'react-bootstrap/Table';
+import ContentHeader from '../../components/ContentHeader';
 
 
-import Table from '../components/Table';
+//import Table from '../components/Table';
 //import Modal from '../components/Modal';
 
 const Appointment = () => {
     const [appointments, setAppointments] = useState([]);
     const [selectedAppointment, setSelectedAppointment] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     useEffect(() => {
         loadAppointments();
@@ -33,7 +32,6 @@ const Appointment = () => {
 
     const handleRowClick = (appointment) => {
         setSelectedAppointment(appointment);
-        //setIsModalOpen(true);
         setShow(true);
     };
 
@@ -55,11 +53,11 @@ const Appointment = () => {
 
 
             <div className="p-6">
-                <Table
+                {/* <Table
                     data={appointments}
                     columns={columns}
                     onRowClick={handleRowClick}
-                />
+                />  */}
             </div>
 
             <Modal show={show} onHide={handleClose}>
