@@ -24,7 +24,7 @@ const DadosPessoais = ({ formData, setFormData, errors }) => {
         </div>
         <div className="col-md-4">
           <label className="form-label">RG:</label>
-          <input name="rg" type="text" className="form-control" value={formData.rg} onChange={handleChange} />
+          <input name="rg" type="text" className="form-control" value={formData.sexo} onChange={handleChange} />
         </div>
         <div className="col-md-4">
           <label className="form-label">Data de Nascimento:</label>
@@ -40,7 +40,9 @@ const DadosPessoais = ({ formData, setFormData, errors }) => {
         </div>
         <div className="col-md-6">
           <label className="form-label">REF.:</label>
-          <input name="referencia" type="text" className="form-control" value={formData.referencia} onChange={handleChange} />
+          {/* <input name="referencia" type="text" className="form-control" value={formData.referencia} onChange={handleChange} /> */}
+          <input type="email" className="form-control mb-1" placeholder="E-mail" value={formData.email} onChange={(e) => handleChange(e, 'email')}
+          />
         </div>
       </div>
       <div className="row mb-2">

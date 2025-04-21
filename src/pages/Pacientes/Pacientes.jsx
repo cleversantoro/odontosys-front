@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
-import ContentHeader from "../../components/ContentHeader";
+import ContentHeader from "../../components/share/ContentHeader";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
-import DadosPessoais from '../../components/DadosPessoais';
-import Telefones from '../../components/Telefones';
-import Endereco from '../../components/Endereco';
-import Orcamento from '../../components/Orcamento';
-import Observacoes from '../../components/Observacoes';
+import DadosPessoais from '../../components/paciente/DadosPessoais';
+import Telefones from '../../components/paciente/Telefones';
+import Endereco from '../../components/paciente/Endereco';
+import Observacoes from '../../components/paciente/Observacoes';
 
 import { useParams } from 'react-router-dom'; // se estiver usando react-router-dom
 
-import './Patients.css';
+import './Pacientes.css';
+import DinamicTable from "../../components/share/DinamicTable";
 
 const Patients = () => {
-  const [patients, setPatients] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [paciente, setPatients] = useState([]);
+  //const [isOpen, setIsOpen] = useState(false);
+
+  const { id } = useParams(); // pega o ID da rota (ex: /pacientes/:id)
+  const [formData, setFormData] = useState({ nome: '', sexo: '', emal: '', dataNascimento: '' });
+
+  const [errors, setErrors] = useState({});
+
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -26,41 +32,28 @@ const Patients = () => {
 
 
   useEffect(() => {
-    api.get('/patients')
-      .then((res) => {
-         setPatients(res.data); 
-         //setFormData(res.data);
-        })
+    api.get('/pacientes')
+      .then((res) => { setPatients(res.data); })
       .catch((error) => { console.error('Erro ao buscar pacientes:', error); });
-  }, []);
+  }, [setPatients, setFormData]);
 
-  const columns = [
-    { key: "name", label: "Nome" },
-    { key: "email", label: "E-mail" },
-    { key: "phone", label: "Telefone" },
-  ];
+  // const columns = [
+  //   { key: "name", label: "Nome" },
+  //   { key: "email", label: "E-mail" },
+  //   { key: "phone", label: "Telefone" },
+  // ];
 
-  const { id } = useParams(); // pega o ID da rota (ex: /pacientes/:id)
-  const [formData, setFormData] = useState({
-    codigo: '', referencia: '', dataEntrada: '', nome: '', cpf: '', rg: '',
-    telefones: { comercial: '', residencial: '', fax: '', celular: '' },
-    endereco: { logradouro: '', bairro: '', cidade: '', cep: '', email: '' },
-    nascimento: '', formasPagamento: '', observacoes: ''
-  });
-
-  const [errors, setErrors] = useState({});
-
-  useEffect(() => {
-    if (id) {
-      api.get(`/pacientes/${id}`)
-        .then(res => {
-          setFormData(res.data);
-        })
-        .catch(err => {
-          console.error('Erro ao carregar paciente:', err);
-        });
-    }
-  }, [id]);
+  // useEffect(() => {
+  //   if (id) {
+  //     api.get(`/pacientes/${id}`)
+  //       .then(res => {
+  //         setFormData(res.data);
+  //       })
+  //       .catch(err => {
+  //         console.error('Erro ao carregar paciente:', err);
+  //       });
+  //   }
+  // }, [id]);
 
   const validate = () => {
     const newErrors = {};
@@ -78,17 +71,12 @@ const Patients = () => {
 
     try {
       if (id) {
-        await api.put(`/patients/${id}`, formData);
+        await api.put(`/pacientes/${id}`, formData);
         alert('Paciente atualizado com sucesso!');
       } else {
-        await api.post('/patients', formData);
+        await api.post('/pacientes', formData);
         alert('Paciente criado com sucesso!');
-        setFormData({
-          codigo: '', referencia: '', dataEntrada: '', nome: '', cpf: '', rg: '',
-          telefones: { comercial: '', residencial: '', fax: '', celular: '' },
-          endereco: { logradouro: '', bairro: '', cidade: '', cep: '', email: '' },
-          nascimento: '', formasPagamento: '', observacoes: ''
-        });
+        setFormData({ nome: '', sexo: '', emal: '', dataNascimento: '' });
       }
     } catch (err) {
       console.error('Erro ao salvar paciente:', err);
@@ -100,13 +88,11 @@ const Patients = () => {
     <>
       <ContentHeader title="Pacientes" />
 
-
       <div className="p-6">
         <Button variant="primary" onClick={handleShow} >
           Adicionar Paciente
         </Button>
-        {/* <Table data={patients} columns={columns} /> */}
-      </div>
+        <DinamicTable dados={paciente} /> </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

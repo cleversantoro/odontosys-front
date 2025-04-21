@@ -1,5 +1,5 @@
 import React from 'react';
-import ContentHeader from '../components/ContentHeader';
+import ContentHeader from '../../components/share/ContentHeader';
 import { Chart } from "react-google-charts";
 
 const databar = [

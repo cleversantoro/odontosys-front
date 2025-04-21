@@ -1,7 +1,7 @@
 //import Navbar from "../components/Navbar.js";
 import React, { useState } from 'react';
 //import './Dashboard.css';
-import ContentHeader from '../../components/ContentHeader';
+import ContentHeader from '../../components/share/ContentHeader';
 
 const Orcamento = () => {
     const [formData, setFormData] = useState({ orcamentoData: '', formasPagamento: '' });

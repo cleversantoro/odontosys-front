@@ -19,7 +19,7 @@ const Endereco = ({ formData, setFormData, errors }) => {
         type="text"
         className="form-control mb-1"
         placeholder="Logradouro"
-        value={formData.endereco.logradouro}
+        //value={formData.endereco.logradouro}
         onChange={(e) => handleChange(e, 'logradouro')}
       />
       <div className="row">
@@ -28,7 +28,7 @@ const Endereco = ({ formData, setFormData, errors }) => {
             type="text"
             className="form-control mb-1"
             placeholder="Bairro"
-            value={formData.endereco.bairro}
+            //value={formData.endereco.bairro}
             onChange={(e) => handleChange(e, 'bairro')}
           />
         </div>
@@ -37,7 +37,7 @@ const Endereco = ({ formData, setFormData, errors }) => {
             type="text"
             className="form-control mb-1"
             placeholder="Cidade"
-            value={formData.endereco.cidade}
+            //value={formData.endereco.cidade}
             onChange={(e) => handleChange(e, 'cidade')}
           />
         </div>
@@ -46,16 +46,9 @@ const Endereco = ({ formData, setFormData, errors }) => {
         type="text"
         className="form-control mb-1"
         placeholder="CEP"
-        value={formData.endereco.cep}
+        //value={formData.endereco.cep}
         onChange={(e) => handleChange(e, 'cep')}
-      />
-      <input
-        type="email"
-        className="form-control mb-1"
-        placeholder="E-mail"
-        value={formData.endereco.email}
-        onChange={(e) => handleChange(e, 'email')}
-      />
+      />      
       {errors.email && <small className="text-danger">{errors.email}</small>}
       <button type="button" className="btn btn-secondary btn-sm">Contatos...</button>
     </div>

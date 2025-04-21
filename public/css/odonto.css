@@ -499,7 +499,7 @@ pre {
   margin-right: 0;
   margin-left: 0; }
   .no-gutters > .col,
-  .no-gutters > [class*="col-"] {
+  .no-gutters > [className*="col-"] {
     padding-right: 0;
     padding-left: 0; }
 
@@ -1885,7 +1885,7 @@ textarea.form-control {
   margin-right: -5px;
   margin-left: -5px; }
   .form-row > .col,
-  .form-row > [class*="col-"] {
+  .form-row > [className*="col-"] {
     padding-right: 5px;
     padding-left: 5px; }
 

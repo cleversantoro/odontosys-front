@@ -1,119 +1,84 @@
-import React, { useState } from 'react';
+//import React, { useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Container, Row, Col, Nav, Image, NavDropdown } from "react-bootstrap";
+import { FaUserFriends, FaChartPie, FaChartBar, FaChartLine, FaAddressBook } from "react-icons/fa";
+import "../styles/custom.css";
+import { FaCalendar } from 'react-icons/fa6';
 
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-
-//import ContentHeader from '../components/ContentHeader';
 
 const Home = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [notifications] = useState(4);
   const location = useLocation();
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    // Implementar lógica de busca aqui
-    console.log('Buscar:', searchQuery);
-  };
+  //const handleSelect = (eventKey) => alert(`selected ${eventKey}`);
 
   return (
-    <div className="dash">
-      <div className={`dash-nav dash-nav-dark ${isMenuOpen ? 'show' : ''}`}>
 
-        <header>
-          <button onClick={toggleMenu} className="menu-toggle">
-            <i className="fas fa-bars"></i>
-          </button>
-          <Link to="/" className="odonto-logo">
-            <i className="fas fa-bolt"></i> <span>OdontoSys</span>
-          </Link>
-        </header>
+    <Container fluid>
+      <Row>
+        <Col md={2} className="sidebar d-flex flex-column justify-content-between">
+          <div>
+            <div className="text-center mb-4">
+              <Image src="" roundedCircle width={80} height={80} className="mb-2" />
+              <h6 className="text-white">OdontoSys</h6>
+            </div>
+            <Nav defaultActiveKey="/" className="flex-column" >
 
-        <nav className="dash-nav-list">
-          <Link to="/dashboard" className="dash-nav-item">
-            <i className="fas fa-home"></i> Dashboard
-          </Link>
+              <Nav.Link as={Link} to="/dashboard" active={location.pathname === "/dashboard"} className="nav-link">
+                <FaChartPie className="me-2" /> Dashboard
+              </Nav.Link>
 
-          <Link to="/orcamento" className="dash-nav-item">
-            <i className="fas fa-chart-bar"></i> Orçamento
-          </Link>
+              <Nav.Link as={Link} to="/agendamentos" active={location.pathname === "/agendamentos"} className="nav-link">
+                <FaAddressBook className="me-2" /> Agendamentos
+              </Nav.Link>
 
-          <Link to="/financeiro" className="dash-nav-item">
-            <i className="fas fa-chart-bar"></i> Financeiro
-          </Link>
+              <Nav.Link as={Link} to="/pacientes" active={location.pathname === "/pacientes"} className="nav-link">
+                <FaUserFriends className="me-2" /> Pacientes
+              </Nav.Link>
 
+              <Nav.Link as={Link} to="/consultas" active={location.pathname === "/consultas"} className="nav-link">
+                <FaCalendar className="me-2" /> Consulta
+              </Nav.Link>
 
-          <Link to="/pacientes" className={`dash-nav-item ${location.pathname === '/pacientes' ? 'active' : ''}`}>
-            <i className="fas fa-user"></i> Pacientes
-          </Link>
+              <Nav.Link as={Link} to="/financeiro" active={location.pathname === "/financeiro"} className="nav-link">
+                <FaChartBar className="me-2" /> Financeiro
+              </Nav.Link>
 
-          {/* <Link to="/consultas" className="dash-nav-item">
-            <i className="fas fa-calendar-alt"></i> Consultas
-          </Link> */}
+              <Nav.Link as={Link} to="/orcamento" active={location.pathname === "/orcamento"} className="nav-link">
+                <FaChartLine className="me-2" /> Orçamento
+              </Nav.Link>
+              <div className="nav-link">
+                <FaChartLine className="me-2" />
+                <NavDropdown title="Teste" id="nav-dropdown">
 
-          <Navbar className="dash-nav-list">
-            <Container>
-                <Link to="/consultas" className="dash-nav-item">
-                  <i className="fas fa-calendar-alt"></i> Consultas
-                </Link>
-            </Container>
-          </Navbar>
+                  <NavDropdown.Item eventKey="4.1">
+                    teste 1
+                  </NavDropdown.Item>
 
-        </nav>
+                  <NavDropdown.Item eventKey="4.2">Teste 2</NavDropdown.Item>
+                  <NavDropdown.Item eventKey="4.3">teste 3</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item eventKey="4.4">Teste 4</NavDropdown.Item>
 
+                  <Nav.Link as={Link} to="/orcamento" active={location.pathname === "/orcamento"}>
+                    <FaChartLine className="me-2" /> Orçamento
+                  </Nav.Link>
 
-      </div>
-
-      <div className="dash-app">
-        <header className="dash-toolbar">
-          <button onClick={toggleMenu} className="menu-toggle">
-            <i className="fas fa-bars"></i>
-          </button>
-
-          <button onClick={toggleSearch} className="searchbox-toggle">
-            <i className="fas fa-search"></i>
-          </button>
-
-          <form className={`searchbox ${isSearchOpen ? 'show' : ''}`} onSubmit={handleSearch}>
-            <button type="button" onClick={toggleSearch} className="searchbox-toggle"><i className="fas fa-arrow-left"></i></button>
-            <button type="submit" className="searchbox-submit"><i className="fas fa-search"></i> </button>
-            <input type="text" className="searchbox-input" placeholder="Digite para pesquisar" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-          </form>
-
-          <div className="tools">
-            <button className="tools-item">
-              <i className="fas fa-bell"></i>
-              {notifications > 0 && <span className="tools-item-count">{notifications}</span>}
-            </button>
-            <div className="dropdown tools-item">
-              <button className="dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown">
-                <i className="fas fa-user"></i>
-              </button>
-              <div className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <Link to="/profile" className="dropdown-item">Perfil</Link>
-                <Link to="/logout" className="dropdown-item">Sair</Link>
+                </NavDropdown>
               </div>
-            </div>
-          </div>
-        </header>
 
-        {/* Main content */}
-        <div >
-          <main className="dash-content">
-            <div className="container-fluid">
-              <Outlet />
-            </div>
-          </main>
-        </div>
-      </div>
-    </div>
+            </Nav>
+          </div>
+          <div className="text-center text-muted small py-2">
+            <span>© 2025 OdontoSys</span>
+          </div>
+        </Col>
+        <Col md={10} className="p-4 bg-light min-vh-100">
+          <Outlet />
+        </Col>
+      </Row>
+    </Container >
+
+
   );
 };
 

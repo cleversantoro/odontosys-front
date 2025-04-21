@@ -23,7 +23,7 @@ const Telefones = ({ formData, setFormData }) => {
           <input
             type="text"
             className="form-control"
-            value={formData.telefones[tipo]}
+            //value={formData.telefones[tipo]}
             onChange={(e) => handleChange(e, tipo)}
           />
         </div>
