@@ -49,7 +49,6 @@ const Endereco = ({ formData, setFormData, errors }) => {
         //value={formData.endereco.cep}
         onChange={(e) => handleChange(e, 'cep')}
       />      
-      {errors.email && <small className="text-danger">{errors.email}</small>}
       <button type="button" className="btn btn-secondary btn-sm">Contatos...</button>
     </div>
   );

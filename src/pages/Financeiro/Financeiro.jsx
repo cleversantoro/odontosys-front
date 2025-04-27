@@ -13,21 +13,21 @@ const Financeiro = () => {
             <div className="card p-3 mb-4">
                 <div className="mb-3">
                     <div className="form-check form-check-inline">
-                        <input classNameName="form-check-input" type="checkbox" id="convenio" />
+                        <input className="form-check-input" type="checkbox" id="convenio" />
                         <label className="form-check-label" htmlFor="convenio">Convênio</label>
                     </div>
                     <select className="form-select d-inline w-auto">
                         <option>Escolha</option>
                     </select>
                     <div className="form-check form-check-inline ms-3">
-                        <input classNameName="form-check-input" type="checkbox" id="particular" defaultChecked />
+                        <input className="form-check-input" type="checkbox" id="particular" defaultChecked />
                         <label className="form-check-label" htmlFor="particular">Particular</label>
                     </div>
                 </div>
 
                 <div className="mb-3">
                     <label className="form-label">Orçamento Aprovado - Valor Total do Serviço:</label>
-                    <input type="text" classNameName="form-control d-inline w-auto" value="R$ 120,00" readOnly />
+                    <input type="text" className="form-control d-inline w-auto" value="R$ 120,00" readOnly />
                     <select className="form-select d-inline w-auto ms-2">
                         <option>Profissional</option>
                     </select>

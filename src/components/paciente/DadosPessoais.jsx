@@ -28,21 +28,22 @@ const DadosPessoais = ({ formData, setFormData, errors }) => {
         </div>
         <div className="col-md-4">
           <label className="form-label">Data de Nascimento:</label>
-          <input type="date" className="form-control mb-2" name="nascimento" value={formData.nascimento}
-            onChange={(e) => setFormData(prev => ({ ...prev, nascimento: e.target.value }))} />
+          <input type="date" className="form-control mb-2" name="dataNascimento"
+            value={formData.dataNascimento}
+            onChange={handleChange} />
         </div>
       </div>
       <div className="row mb-2">
         <div className="col-md-6">
           <label className="form-label">CÓDIGO:</label>
-          <input name="codigo" type="text" className="form-control" value={formData.codigo} onChange={handleChange} />
+          <input name="codigo" type="text" className="form-control" value={formData.codigo}
+            onChange={handleChange} />
           {errors.codigo && <small className="text-danger">{errors.codigo}</small>}
         </div>
         <div className="col-md-6">
-          <label className="form-label">REF.:</label>
-          {/* <input name="referencia" type="text" className="form-control" value={formData.referencia} onChange={handleChange} /> */}
-          <input type="email" className="form-control mb-1" placeholder="E-mail" value={formData.email} onChange={(e) => handleChange(e, 'email')}
-          />
+          <label className="form-label">E-MAIL:</label>
+          <input name="email" type="email" className="form-control mb-1" placeholder="E-mail" value={formData.email}
+            onChange={handleChange} />
         </div>
       </div>
       <div className="row mb-2">
