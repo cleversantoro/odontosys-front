@@ -19,7 +19,7 @@ import Calendar from './pages/Agendamento/Calendar';
 //import { CssBaseline, ThemeProvider } from "@mui/material";
 
 const PacientesLista = React.lazy(() => import('./pages/Pacientes/PacientesLista'));
-const PacientesCadastro = React.lazy(() => import('./pages/Pacientes/PacientesCadastro'));
+const PacientesCadastro = React.lazy(() => import('./pages/Pacientes/PacientesCadastrobk'));
 
 function App() {
   //const [theme, colorMode] = useMode();
@@ -37,8 +37,8 @@ function App() {
                 <Route element={<Home />}>
                   <Route path="/home" element={<Home />} />
                   <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/pacienteslista" element={<PacientesLista />} />
-                  <Route path="/pacientescadastro" element={<PacientesCadastro />} />
+                  <Route path="/pacientes/listar" element={<PacientesLista />} />
+                  <Route path="/pacientes/cadastrar" element={<PacientesCadastro />} />
                   <Route path="/consultas" element={<Consultas />} />
                   <Route path="/orcamento" element={<Orcamento />} />
                   <Route path="/financeiro" element={<Financeiro />} />

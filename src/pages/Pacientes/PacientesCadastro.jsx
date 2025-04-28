@@ -8,6 +8,9 @@ import Telefones from "../../components/paciente/Telefones";
 import Endereco from "../../components/paciente/Endereco";
 import Observacoes from "../../components/paciente/Observacoes";
 import ToastSucesso from "../../components/share/ToastSucesso";
+import Documentos from '../../components/paciente/Documentos';
+import DadosClinicos from "../../components/paciente/DadosClinicos";
+
 
 export default function PacientesCadastro() {
   const { id } = useParams();
@@ -15,13 +18,30 @@ export default function PacientesCadastro() {
   const [showSuccess, setShowSuccess] = useState(false);
 
   const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    sexo: 'Masculino',
-    dataNascimento: '',
-    telefones: [],
+    paciente: {
+      codigo: "",
+      nome: "",
+      email: "",
+      sexo: "Masculino",
+      dataNascimento: "",
+      estadoCivil: "",
+      nacionalidade: "",
+      naturalidade: "",
+      estado: "",
+      dataEntrada: "",
+      obs: ""
+    },
     enderecos: [],
-    observacoes: ''
+    telefones: [],
+    documentos: [],
+    dadosClinicos: {
+      grupoSanguineo: "",
+      alergias: "",
+      medicamentosContinuos: "",
+      doencasPreExistentes: "",
+      planoSaude: "",
+      numeroApolice: ""
+    }
   });
 
   const [errors, setErrors] = useState({});
@@ -34,7 +54,7 @@ export default function PacientesCadastro() {
         .then(res => {
           setFormData({
             ...res.data,
-            dataNascimento: res.data.dataNascimento.split('T')[0], // Ajusta formato da data
+            dataNascimento: res.data.paciente.dataNascimento.split('T')[0], // Ajusta formato da data
           });
         })
         .catch(err => {
@@ -56,27 +76,49 @@ export default function PacientesCadastro() {
     return Object.keys(newErrors).length === 0;
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!validate()) return;
+
+  //   setIsSubmitting(true);
+
+  //   try {
+  //     if (id) {
+  //       await api.put(`/pacientes/${id}`, formData);
+  //     } else {
+  //       await api.post('/pacientes', formData);
+  //     }
+  //     setShowSuccess(true);
+  //     setTimeout(() => navigate('/pacientes'), 1500); // tempo pro usuário ver o toast
+  //   } catch (err) {
+  //     console.error('Erro ao salvar paciente:', err);
+  //     alert('Erro ao salvar os dados.');
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validate()) return;
-
-    setIsSubmitting(true);
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
     try {
-      if (id) {
-        await api.put(`/pacientes/${id}`, formData);
-      } else {
-        await api.post('/pacientes', formData);
-      }
-      setShowSuccess(true);
-      setTimeout(() => navigate('/pacientes'), 1500); // tempo pro usuário ver o toast
+      const response = await api.post("/pacientes/completo", formData);
+      alert("Paciente cadastrado com sucesso!");
+      navigate("/pacientes/listar");
     } catch (err) {
-      console.error('Erro ao salvar paciente:', err);
-      alert('Erro ao salvar os dados.');
-    } finally {
+      console.error("Erro ao salvar paciente:", err);
+      alert("Erro ao salvar dados do paciente.");
+    }
+    finally {
       setIsSubmitting(false);
     }
   };
+
 
   if (isLoading) {
     return (
@@ -94,31 +136,35 @@ export default function PacientesCadastro() {
       <Container className="mt-4">
         <Form onSubmit={handleSubmit}>
           <Tabs defaultActiveKey="dados" className="mb-3">
+
             <Tab eventKey="dados" title="Dados Pessoais">
               <DadosPessoais formData={formData} setFormData={setFormData} errors={errors} />
             </Tab>
-            <Tab eventKey="enderecos" title="Endereço">
+            <Tab eventKey="endereco" title="Endereço">
               <Endereco formData={formData} setFormData={setFormData} />
             </Tab>
             <Tab eventKey="telefones" title="Telefones">
               <Telefones formData={formData} setFormData={setFormData} />
             </Tab>
+            <Tab eventKey="documentos" title="Documentos" >
+              <Documentos formData={formData} setFormData={setFormData} />
+            </Tab>
+            <Tab eventKey="dadosClinicos" title="Dados Clínicos">
+              <DadosClinicos formData={formData} setFormData={setFormData} errors={errors} />
+            </Tab>
             <Tab eventKey="observacoes" title="Observações">
               <Observacoes formData={formData} setFormData={setFormData} />
             </Tab>
+
           </Tabs>
           <div className="text-end">
-            <Button variant="secondary" onClick={() => navigate('/pacientes')} className="me-2">
+            <Button variant="secondary" onClick={() => navigate('/pacientes/listar')} className="me-2">
               Voltar
             </Button>
-            <Button variant="primary" type="submit" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <>
-                  <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> Salvando...
-                </>
-              ) : (
-                "Salvar"
-              )}
+            <Button variant="primary" type="submit" disabled={isSubmitting} className="btn-save">
+              {isSubmitting
+                ? (<><Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> Salvando... </>)
+                : ("Salvar Paciente")}
             </Button>
           </div>
         </Form>

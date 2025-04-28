@@ -1,14 +1,16 @@
 import React from 'react';
+import {  Form } from 'react-bootstrap';
 
 const Observacoes = ({ formData, setFormData }) => {
   return (
-    <textarea
-      className="form-control"
-      rows="8"
-      placeholder="Digite suas observações aqui..."
-      value={formData.observacoes}
-      onChange={(e) => setFormData(prev => ({ ...prev, observacoes: e.target.value }))}
-    />
+    <>
+      <Form.Control as="textarea" rows={8}
+        className="form-control"
+        placeholder="Digite suas observações aqui..."
+        value={formData.paciente.obs}
+        onChange={(e) => setFormData(prev => ({ ...prev, obs: e.target.value }))}/>
+      <br />
+    </>
   );
 };
 

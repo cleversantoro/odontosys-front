@@ -116,8 +116,8 @@ const Home = () => {
                 </MenuItem>
 
                 <SubMenu label="Pacientes" icon={<FaUserFriends className='me-2' />}>
-                  <MenuItem component={<Link to="/pacienteslista" className="link" />}>Lista de Pacientes</MenuItem>
-                  <MenuItem component={<Link to="/pacientescadastro" className="link" />}>Cadastro de pacientes</MenuItem>
+                  <MenuItem component={<Link to="/pacientes/listar" className="link" />}>Lista de Pacientes</MenuItem>
+                  <MenuItem component={<Link to="/pacientes/cadastrar" className="link" />}>Cadastro de pacientes</MenuItem>
                 </SubMenu>
 
                 <SubMenu label="Consultas" icon={<FaCalendar className='me-2' />}>
