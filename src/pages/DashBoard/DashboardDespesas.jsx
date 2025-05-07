@@ -25,7 +25,7 @@ export default function DashboardDespesas() {
   const processaDados = (data) => {
     const totalGasto = data.reduce((acc, curr) => acc + curr.valor, 0);
     setTotal(totalGasto.toFixed(2));
-
+    
     const agrupadoCategoria = data.reduce((acc, curr) => {
       acc[curr.categoria] = (acc[curr.categoria] || 0) + curr.valor;
       return acc;

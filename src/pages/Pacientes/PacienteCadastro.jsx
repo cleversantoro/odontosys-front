@@ -50,7 +50,7 @@ export default function PacientesCadastro() {
 
   useEffect(() => {
     if (id) {
-      api.get(`/pacientes/${id}`)
+      api.get(`/pacientes/${id}/detalhado`)
         .then(res => {
           setFormData({
             ...res.data,
@@ -107,7 +107,8 @@ export default function PacientesCadastro() {
     }
 
     try {
-      const response = await api.post("/pacientes/completo", formData);
+      //const response = 
+      await api.post("/pacientes/completo", formData);
       alert("Paciente cadastrado com sucesso!");
       navigate("/pacientes/listar");
     } catch (err) {

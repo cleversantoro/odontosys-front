@@ -1,5 +1,5 @@
-import React, {  useState } from 'react';
-import { Form, Row, Col  } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Form, Row, Col } from 'react-bootstrap';
 import estadosData from '../../assets/data/Estados.json';
 import cidadesData from '../../assets/data/Cidades.json';
 import nacionalidadesData from '../../assets/data/nacionalidades.json';
@@ -38,7 +38,7 @@ const DadosPessoais = ({ formData, setFormData, errors }) => {
               name="nome"
               value={formData.paciente?.nome}
               onChange={handleChange}
-              // isInvalid={!!errors.nome}
+            // isInvalid={!!errors.nome}
             />
             {/* <Form.Control.Feedback type="invalid">
               {errors.nome}
@@ -51,12 +51,7 @@ const DadosPessoais = ({ formData, setFormData, errors }) => {
         <Col md={4}>
           <Form.Group controlId="dataNascimento">
             <Form.Label>Data de Nascimento</Form.Label>
-            <Form.Control
-              type="date"
-              name="dataNascimento"
-              value={formData.paciente?.dataNascimento}
-              onChange={handleChange}
-            />
+            <Form.Control type="date" name="dataNascimento" value={formData.paciente?.dataNascimento} onChange={handleChange} />
           </Form.Group>
         </Col>
         <Col md={4}>
@@ -85,6 +80,32 @@ const DadosPessoais = ({ formData, setFormData, errors }) => {
 
       <Row className="mb-3">
         <Col md={6}>
+          <Form.Group controlId="estado">
+            <Form.Label>Estado (UF)</Form.Label>
+            <Form.Select name="estado" value={formData.paciente?.estado} onChange={handleChange}>
+              <option value="">Selecione</option>
+              {estadosData.map(estado => (
+                <option key={estado.ID} value={estado.Sigla}>{estado.Nome}</option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </Col>
+
+        <Col md={6}>
+          <Form.Group controlId="naturalidade">
+            <Form.Label>Naturalidade (Cidade)</Form.Label>
+            <Form.Select name="naturalidade" value={formData.paciente?.naturalidade} onChange={handleChange}>
+              <option value="">Selecione</option>
+              {cidadesFiltradas.map(cidade => (
+                <option key={cidade.ID} value={cidade.Nome}>{cidade.Nome}</option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </Col>        
+      </Row>
+
+      <Row className="mb-3">
+      <Col md={6}>
           <Form.Group controlId="nacionalidade">
             <Form.Label>Nacionalidade</Form.Label>
             <Form.Select name="nacionalidade" value={formData.paciente?.nacionalidade} onChange={handleChange}>
@@ -96,31 +117,6 @@ const DadosPessoais = ({ formData, setFormData, errors }) => {
           </Form.Group>
         </Col>
 
-        <Col md={6}>
-          <Form.Group controlId="estado">
-            <Form.Label>Estado (UF)</Form.Label>
-            <Form.Select name="estado" value={formData.paciente?.estado} onChange={handleChange}>
-              <option value="">Selecione</option>
-              {estadosData.map(estado => (
-                <option key={estado.ID} value={estado.Sigla}>{estado.Nome}</option>
-              ))}
-            </Form.Select>
-          </Form.Group>
-        </Col>
-      </Row>
-
-      <Row className="mb-3">
-        <Col md={6}>
-          <Form.Group controlId="naturalidade">
-            <Form.Label>Naturalidade (Cidade)</Form.Label>
-            <Form.Select name="naturalidade" value={formData.paciente?.naturalidade} onChange={handleChange}>
-              <option value="">Selecione</option>
-              {cidadesFiltradas.map(cidade => (
-                <option key={cidade.ID} value={cidade.Nome}>{cidade.Nome}</option>
-              ))}
-            </Form.Select>
-          </Form.Group>
-        </Col>
         <Col md={6}>
           <Form.Group controlId="email">
             <Form.Label>E-mail</Form.Label>

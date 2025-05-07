@@ -5,6 +5,7 @@ import api from "../../services/api";
 import PacienteDetalhesModal from "./PacienteDetalhes";
 import ToastConfirmacao from "../../components/share/ToastConfirmacao";
 import ContentHeader from "../../components/share/ContentHeader";
+import "./cadastroPaciente.css";
 
 export default function PacientesLista() {
   const [pacientes, setPacientes] = useState([]);
@@ -89,7 +90,7 @@ export default function PacientesLista() {
                 <td>{p.sexo}</td>
                 <td>
                   <Button variant="info" size="sm" onClick={() => { setPacienteSelecionado(p); setShowModalDetalhes(true); }}>Visualizar</Button>{" "}
-                  <Button variant="warning" size="sm" onClick={() => navigate(`/pacientes/editar/${p.id}`)}>Editar</Button>{" "}
+                  <Button variant="warning" size="sm" onClick={() => navigate(`/pacientes/cadastrar/${p.id}`)}>Editar</Button>{" "}
                   <Button variant="danger" size="sm" onClick={() => setToastDelete({ show: true, id: p.id })}>Excluir</Button>
                 </td>
               </tr>
