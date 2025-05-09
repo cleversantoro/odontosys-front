@@ -25,8 +25,8 @@ const Home = () => {
                 </MenuItem>
 
                 <SubMenu label="DashBoard" icon={<FaChartPie className="me-2" />}>
-                  <MenuItem component={<Link to="/dashboard" className="link" />}>Pie charts</MenuItem>
-                  <MenuItem component={<Link to="/dashboard" className="link" />}>Line charts</MenuItem>
+                  <MenuItem component={<Link to="/dashboard/consultas" className="link" />}>Consultas</MenuItem>
+                  <MenuItem component={<Link to="/dashboard/despesas" className="link" />}>Despesas</MenuItem>
                 </SubMenu>
 
                 <MenuItem

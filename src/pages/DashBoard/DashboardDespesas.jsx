@@ -8,7 +8,7 @@ import ContentHeader from "../../components/share/ContentHeader";
 const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff7f50", "#a0522d", "#6a5acd"];
 
 export default function DashboardDespesas() {
-  const [despesas, setDespesas] = useState([]);
+  //const [despesas, setDespesas] = useState([]);
   const [total, setTotal] = useState(0);
   const [porCategoria, setPorCategoria] = useState([]);
   const [porData, setPorData] = useState([]);
@@ -16,7 +16,7 @@ export default function DashboardDespesas() {
   useEffect(() => {
     api.get('/despesas')
       .then((res) => {
-        setDespesas(res.data);
+        //setDespesas(res.data);
         processaDados(res.data);
       })
       .catch((error) => { console.error('Erro ao buscar pacientes:', error); });

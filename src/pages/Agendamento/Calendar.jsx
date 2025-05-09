@@ -6,9 +6,9 @@ import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import esLocale from '@fullcalendar/core/locales/pt-br';
 
-import { List, ListItem, ListItemText, Typography, useTheme } from "@mui/material";
-import { tokens } from "../../theme";
-import { formatDate } from "@fullcalendar/core";
+// import { List, ListItem, ListItemText, Typography, useTheme } from "@mui/material";
+// import { tokens } from "../../theme";
+// import { formatDate } from "@fullcalendar/core";
 import { Col, Container, Row } from "react-bootstrap";
 import api from '../../services/api';
 
@@ -17,9 +17,9 @@ import { Modal, Form, Button } from 'react-bootstrap';
 
 
 const Calendar = () => {
-    const theme = useTheme();
-    const colors = tokens(theme.palette.mode);
-    const [currentEvents, setCurrentEvents] = useState([]);
+    // const theme = useTheme();
+    // const colors = tokens(theme.palette.mode);
+    // const [currentEvents, setCurrentEvents] = useState([]);
     const [eventos, setEventos] = useState([]);
     const [filtroPaciente, setFiltroPaciente] = useState('');
     const [filtroProfissional, setFiltroProfissional] = useState('');
@@ -37,11 +37,11 @@ const Calendar = () => {
 
     useEffect(() => {
         carregarConsultas();
-    }, [ ]);
+    },);
 
     const carregarConsultas = async () => {
         try {
-            const res = await api.get('/consultas/completa');
+            const res = await api.get('/consultas/vwcompleta');
             const eventosConvertidos = res.data.map((c) => ({
                 id: c.id,
                 title: `${c.nome_paciente} - ${c.nome_profissional}`,
@@ -148,27 +148,6 @@ const Calendar = () => {
                 </Col>
             </Row>
             <Row>
-                <Col md={2}>
-                    <Typography variant="h5">Eventos</Typography>
-                    <List>
-                        {currentEvents.map((event) => (
-                            <ListItem key={event.id}
-                                sx={{
-                                    backgroundColor: colors.greenAccent[500],
-                                    margin: "10px 0",
-                                    borderRadius: "2px",
-                                }}>
-                                <ListItemText
-                                    primary={event.title}
-                                    secondary={
-                                        <Typography>
-                                            {formatDate(event.start, { day: "numeric", month: "short", year: "numeric" })}
-                                        </Typography>
-                                    } />
-                            </ListItem>
-                        ))}
-                    </List>
-                </Col>
                 <Col md={10}>
                     <FullCalendar
                         height="75vh"
@@ -192,7 +171,7 @@ const Calendar = () => {
                         dayMaxEvents={true}
                         select={handleDateClick}
                         eventClick={handleEventClick}
-                        eventsSet={(events) => setCurrentEvents(events)}
+                        // eventsSet={(events) => setCurrentEvents(events)}
                         events={eventos}
                     />
                 </Col>
@@ -255,3 +234,24 @@ const Calendar = () => {
 };
 
 export default Calendar;
+/* <Col md={2}>
+    <Typography variant="h5">Eventos</Typography>
+    <List>
+        {currentEvents.map((event) => (
+            <ListItem key={event.id}
+                sx={{
+                    backgroundColor: colors.greenAccent[500],
+                    margin: "10px 0",
+                    borderRadius: "2px",
+                }}>
+                <ListItemText
+                    primary={event.title}
+                    secondary={
+                        <Typography>
+                            {formatDate(event.start, { day: "numeric", month: "short", year: "numeric" })}
+                        </Typography>
+                    } />
+            </ListItem>
+        ))}
+    </List>
+</Col> */

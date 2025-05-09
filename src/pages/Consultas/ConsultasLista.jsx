@@ -30,7 +30,7 @@ export default function ConsultasLista() {
 
   const carregarConsultas = async () => {
     try {
-      const response = await api.get('/consultas/completa');
+      const response = await api.get('/consultas/vwcompleta');
       setConsultas(response.data);
     } catch (error) {
       console.error('Erro ao carregar consultas:', error);
